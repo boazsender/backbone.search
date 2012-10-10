@@ -1,6 +1,10 @@
 /*! backbone.search - v0.1.0-pre - 2012-10-10
 * https://github.com/boazsender/backbone.search
 * Copyright (c) 2012 Boaz Sender; Licensed MIT */
+
+/*! backbone.search - v0.1.0-pre - 2012-10-10
+* https://github.com/boazsender/backbone.search
+* Copyright (c) 2012 Boaz Sender; Licensed MIT */
 /*global Backbone:false, _: false, console: false*/
 
 (function(Backbone, _) {
@@ -16,16 +20,20 @@
       return model.get( "searchscore" );
     };
 
-    this.each( function( model ){
-      var score = JSON.stringify( model.toJSON() ).score( term );
+    if( term ) {
+      this.each( function( model ){
+        var score = JSON.stringify( model.toJSON() ).score( term );
 
-      if ( score > 0 ) {
-        model.set( "searchscore", score );
-        scores.add( model );
-      }
-    });
+        if ( score > 0 ) {
+          model.set( "searchscore", score );
+          scores.add( model );
+        }
+      });
+
+    }
 
     return scores;
+
   };
 
 
