@@ -17,7 +17,7 @@
     var scores =  new Backbone.Collection();
 
     scores.comparator = function( model ) {
-      return model.get( "searchscore" );
+      return -1 * model.get( "searchscore" );
     };
 
     if( term ) {
