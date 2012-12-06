@@ -1,4 +1,4 @@
-/*! backbone.search - v0.1.0-pre - 2012-10-10
+/*! backbone.search - v0.1.0-pre - 2012-12-05
 * https://github.com/boazsender/backbone.search
 * Copyright (c) 2012 Boaz Sender; Licensed MIT */
 
@@ -21,12 +21,12 @@
     var scores =  new Backbone.Collection();
 
     scores.comparator = function( model ) {
-      return model.get( "searchscore" );
+      return -1 * model.get( "searchscore" );
     };
 
     if( term ) {
       this.each( function( model ){
-        var score = JSON.stringify( model.toJSON() ).score( term );
+        var score = JSON.stringify( model ).score( term );
 
         if ( score > 0 ) {
           model.set( "searchscore", score );
