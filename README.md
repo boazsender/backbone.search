@@ -12,11 +12,15 @@ In your web page:
 
 ```html
 <script src="jquery.js"></script>
-<script src="dist/backbone.search.min.js"></script>
+<script src="backbone.min.js"></script>
+<script src="backbone.search.min.js"></script>
 <script>
-jQuery(function($) {
-  $.awesome(); // "awesome"
-});
+  var searchableObjs = new Backbone.Collection( arrOfObjs );
+  
+  var results = searchableObjs.search( "term" )
+  
+  // 'results' is a new collection, where the models that score higher than
+  // 0 for "term" are sorted by their score for matching "term"
 </script>
 ```
 
