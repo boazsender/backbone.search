@@ -22,7 +22,7 @@
 
     if( term ) {
       this.each( function( model ){
-        var score = JSON.stringify( model ).toLowerCase().score( term );
+        var score = JSON.stringify( _.values(model.toJSON()) ).toLowerCase().score( term );
 
         if ( score > 0 ) {
           model.set( "searchscore", score );

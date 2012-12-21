@@ -6,7 +6,7 @@
         { id: 0, title: "Welcome Isaac Durazo" },
         { id: 1, title: "Ringmark Tests Open Source" },
         { id: 2, title: "Bocoup Gamelab" },
-        { id: 3, title: "Strangely capitalized wElCOMe" }
+        { id: 3, title: "Strange wElCOMe" }
       ]);
     }
   });
@@ -30,6 +30,14 @@
     var results = this.coll.search("welcome");
 
     equal(results.length, 2);
+
+  });
+
+  test("Search does not consider attributes by default", function() {
+
+    var results = this.coll.search("title");
+
+    equal(results.length, 0);
 
   });
 
