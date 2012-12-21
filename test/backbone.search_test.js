@@ -14,4 +14,14 @@
     equal(typeof this.coll.search, "function");
   });
 
+  test("Returns correct matches", 3, function() {
+
+    var results = this.coll.search("co");
+
+    equal(results.length, 2);
+    ok(results.get(this.coll.at(0)));
+    ok(results.get(this.coll.at(2)));
+
+  });
+
 }(this, this.jQuery, this.Backbone, this._));

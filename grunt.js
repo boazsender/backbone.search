@@ -53,7 +53,8 @@ module.exports = function(grunt) {
         globals: {
           module: true,
           equal: true,
-          test: true
+          test: true,
+          ok: true
         }
       },
       source: {
