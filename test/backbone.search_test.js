@@ -5,7 +5,8 @@
       this.coll = new Backbone.Collection([
         { id: 0, title: "Welcome Isaac Durazo" },
         { id: 1, title: "Ringmark Tests Open Source" },
-        { id: 2, title: "Bocoup Gamelab" }
+        { id: 2, title: "Bocoup Gamelab" },
+        { id: 3, title: "Strangely capitalized wElCOMe" }
       ]);
     }
   });
@@ -18,9 +19,17 @@
 
     var results = this.coll.search("co");
 
-    equal(results.length, 2);
+    equal(results.length, 3);
     ok(results.get(this.coll.at(0)));
     ok(results.get(this.coll.at(2)));
+
+  });
+
+  test("Search is case-insensitive by default", 1, function() {
+
+    var results = this.coll.search("welcome");
+
+    equal(results.length, 2);
 
   });
 
