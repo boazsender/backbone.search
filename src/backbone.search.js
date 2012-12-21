@@ -7,12 +7,12 @@
 * Copyright (c) 2012 Boaz Sender; Licensed MIT */
 /*global Backbone:false, _: false, console: false*/
 
-(function(Backbone, _) {
+(function(Backbone, _, $, undefined) {
 
   // Based on John Resig's jQuery LiveSearch: http://ejohn.org/blog/jquery-livesearch
   Backbone.Collection.prototype.search = function ( term ) {
 
-    term = jQuery.trim( term.toLowerCase() );
+    term = $.trim( term.toLowerCase() );
 
     var scores =  new Backbone.Collection();
 
@@ -147,4 +147,4 @@
 
   };
 
-}(Backbone, _));
+}(Backbone, _, jQuery));
