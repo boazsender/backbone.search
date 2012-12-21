@@ -27,7 +27,9 @@ module.exports = function(grunt) {
       files: ['test/**/*.html']
     },
     lint: {
-      files: ['grunt.js', 'src/**/*.js', 'test/**/*.js']
+      source: ['src/**/*.js'],
+      build: ['grunt.js'],
+      tests: ['test/**/*.js']
     },
     watch: {
       files: '<config:lint.files>',
@@ -47,8 +49,17 @@ module.exports = function(grunt) {
         eqnull: true,
         browser: true
       },
-      globals: {
-        jQuery: true
+      tests: {
+        globals: {
+          module: true,
+          equal: true,
+          test: true
+        }
+      },
+      source: {
+        globals: {
+          jQuery: true
+        }
       }
     },
     uglify: {}
