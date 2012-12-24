@@ -1,38 +1,44 @@
-/*global QUnit:false, module:false, test:false, asyncTest:false, expect:false*/
-/*global start:false, stop:false ok:false, equal:false, notEqual:false, deepEqual:false*/
-/*global notDeepEqual:false, strictEqual:false, notStrictEqual:false, raises:false*/
-/*global Backbone:false, _: false, console: false*/
-(function($, Backbone, _) {
+(function(window, $, Backbone, _, undefined) {
 
-  /*
-    ======== A Handy Little QUnit Reference ========
-    http://docs.jquery.com/QUnit
-
-    Test methods:
-      expect(numAssertions)
-      stop(increment)
-      start(decrement)
-    Test assertions:
-      ok(value, [message])
-      equal(actual, expected, [message])
-      notEqual(actual, expected, [message])
-      deepEqual(actual, expected, [message])
-      notDeepEqual(actual, expected, [message])
-      strictEqual(actual, expected, [message])
-      notStrictEqual(actual, expected, [message])
-      raises(block, [expected], [message])
-  */
-
-  module('tbd', {
+  module("tbd", {
     setup: function() {
-      //setupcode
+      this.coll = new Backbone.Collection([
+        { id: 0, title: "Welcome Isaac Durazo" },
+        { id: 1, title: "Ringmark Tests Open Source" },
+        { id: 2, title: "Bocoup Gamelab" },
+        { id: 3, title: "Strange wElCOMe" }
+      ]);
     }
   });
 
-  test('myfirsttest', 1, function() {
-    // Not a bad test to run on collection methods.
-    equal(1, 1, '1 equals 1');
+  test("Defines a 'search' method on Backbone collections", 1, function() {
+    equal(typeof this.coll.search, "function");
   });
 
+  test("Returns correct matches", 3, function() {
 
-}(jQuery, Backbone, _));
+    var results = this.coll.search("co");
+
+    equal(results.length, 3);
+    ok(results.get(this.coll.at(0)));
+    ok(results.get(this.coll.at(2)));
+
+  });
+
+  test("Search is case-insensitive by default", 1, function() {
+
+    var results = this.coll.search("welcome");
+
+    equal(results.length, 2);
+
+  });
+
+  test("Search does not consider attributes by default", function() {
+
+    var results = this.coll.search("title");
+
+    equal(results.length, 0);
+
+  });
+
+}(this, this.jQuery, this.Backbone, this._));
