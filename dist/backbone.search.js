@@ -1,4 +1,4 @@
-/*! backbone.search - v0.1.0-pre - 2012-12-05
+/*! backbone.search - v0.1.0-pre - 2012-12-24
 * https://github.com/boazsender/backbone.search
 * Copyright (c) 2012 Boaz Sender; Licensed MIT */
 
@@ -11,12 +11,12 @@
 * Copyright (c) 2012 Boaz Sender; Licensed MIT */
 /*global Backbone:false, _: false, console: false*/
 
-(function(Backbone, _) {
+(function(Backbone, _, $, undefined) {
 
   // Based on John Resig's jQuery LiveSearch: http://ejohn.org/blog/jquery-livesearch
   Backbone.Collection.prototype.search = function ( term ) {
 
-    term = jQuery.trim( term.toLowerCase() );
+    term = $.trim( term.toLowerCase() );
 
     var scores =  new Backbone.Collection();
 
@@ -26,7 +26,7 @@
 
     if( term ) {
       this.each( function( model ){
-        var score = JSON.stringify( model ).score( term );
+        var score = JSON.stringify( _.values(model.toJSON()) ).toLowerCase().score( term );
 
         if ( score > 0 ) {
           model.set( "searchscore", score );
@@ -151,4 +151,4 @@
 
   };
 
-}(Backbone, _));
+}(Backbone, _, jQuery));
